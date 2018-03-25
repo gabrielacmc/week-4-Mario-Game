@@ -23,6 +23,7 @@ $(document).ready(function () {
 
     var alive = true;
     var counter = 0;
+    var enemy = false;
 
     function reset(){
         
@@ -80,33 +81,43 @@ $(document).ready(function () {
     })
 
 
-    if (alive) {
         $("#enemys").on("click", "#mario", function () {
+            if((alive) && !(enemy)){
             $("#defender").html(this);
             attacker = ($(this).attr("id"));
             $("#text").html("<p>You will fight against Mario! </p>")
             $("#defender").removeClass("hidden");
+            enemy = true;
+            }
         }).on("click", "#yoshi", function () {
+            if((alive) && !(enemy)){
             $("#defender").html(this);
             attacker = ($(this).attr("id"));
             $("#text").html("<p>You will fight against Yoshi! </p>")
             $("#defender").removeClass("hidden");
+            enemy = true;
+            }
         }).on("click", "#boo", function () {
+            if((alive) && !(enemy)) {
             $("#defender").html(this);
             attacker = ($(this).attr("id"));
             $("#text").html("<p>You will fight against Boo! </p>")
             $("#defender").removeClass("hidden");
+            enemy = true;
+            }
         }).on("click", "#bowser", function () {
+            if((alive) && !(enemy)) {
             $("#defender").html(this);
             attacker = ($(this).attr("id"));
             $("#text").html("<p>You will fight against Bowser! </p>")
             $("#defender").removeClass("hidden");
+            enemy = true;
+        }
         })
-    };
 
-    
 
     $("#fight").on("click", function () {
+        if (enemy){
         if (yourChar === "mario") {
             if (mario.live > 0) {
 
@@ -116,8 +127,9 @@ $(document).ready(function () {
                         $("#defender").addClass("hidden");
                         $(".characters").append($("#yoshi"));
                         $(".characters").addClass("hidden");
-                        $("#text").html("<p>You WON! </p>")
+                        $("#text").html("<p>You WON! </p>");
                         $("#reset").removeClass("hidden");
+                        enemy = false;
 
                     }
                     else if (yoshi.live <= 0) {
@@ -125,6 +137,7 @@ $(document).ready(function () {
                         $(".characters").append($("#yoshi"));
                         $(".characters").addClass("hidden");
                         counter++
+                        enemy = false;
 
                     }
                     else {
@@ -138,6 +151,7 @@ $(document).ready(function () {
                             $("#text").html("<p>GAME OVER! You have been defeated! </p>")
                             $("#reset").removeClass("hidden");
                             alive = false
+                            enemy = false;
 
                         }
 
@@ -149,10 +163,11 @@ $(document).ready(function () {
                 boo.live = boo.live - mario.power;
                 if ((boo.live <= 0) && (counter === 2)) {
                     $("#defender").addClass("hidden");
-                    $("#text").html("<p>You WON! </p>")
+                    $("#text").html("<p>You WON! </p>");
                     $(".characters").append($("#boo"));
                     $(".characters").addClass("hidden");
                     $("#reset").removeClass("hidden");
+                    enemy  = false;
 
                 }
                 else if (boo.live <= 0) {
@@ -160,6 +175,7 @@ $(document).ready(function () {
                     $("#defender").addClass("hidden");
                     $(".characters").append($("#boo"));
                     $(".characters").addClass("hidden");
+                    enemy = false;
                     counter++
 
                 }
@@ -172,6 +188,7 @@ $(document).ready(function () {
                     if (mario.live <= 0) {
                         $("#text").html("<p>GAME OVER! You have been defeated! </p>")
                         $("#reset").removeClass("hidden");
+                        enemy = false;
                         alive = false
                     }
                 }
@@ -182,10 +199,12 @@ $(document).ready(function () {
                 if (bowser.live <= 0) {
                     if ((bowser.live <= 0) && (counter === 2)) {
                         $("#defender").addClass("hidden");
-                        $("#text").html("<p>You WON! </p>")
+                        $("#text").html("<p>You WON! </p>");
                         $(".characters").append($("#bowser"));
                         $(".characters").addClass("hidden");
                         $("#reset").removeClass("hidden");
+
+                        enemy = false;
 
                     }
                     else if (bowser.live <= 0) {
@@ -193,6 +212,7 @@ $(document).ready(function () {
                         $("#defender").addClass("hidden");
                         $(".characters").append($("#bowser"));
                         $(".characters").addClass("hidden");
+                        enemy = false;
                         counter++
 
                     }
@@ -207,7 +227,7 @@ $(document).ready(function () {
                     if (mario.live <= 0) {
                         $("#text").html("<p>GAME OVER! You have been defeated! </p>")
                         $("#reset").removeClass("hidden");
-                        
+                        enemy = false;
                         alive = false
                     }
                 }
@@ -226,10 +246,11 @@ $(document).ready(function () {
                     mario.live = mario.live - yoshi.power;
                         if ((mario.live <= 0) && (counter === 2)) {
                             $("#defender").addClass("hidden");
-                            $("#text").html("<p>You WON! </p>")
+                            $("#text").html("<p>You WON! </p>");
                             $(".characters").append($("#mario"));
                             $(".characters").addClass("hidden");
                             $("#reset").removeClass("hidden");
+                            enemy = false;
 
                         }
                         else if (mario.live <= 0) {
@@ -238,6 +259,7 @@ $(document).ready(function () {
                             counter++
                             $(".characters").append($("#mario"));
                             $(".characters").addClass("hidden");
+                            enemy = false;
 
                         }
                     else {
@@ -250,6 +272,7 @@ $(document).ready(function () {
                             $("#text").html("<p>GAME OVER! You have been defeated! </p>")
                             $("#reset").removeClass("hidden");
                             alive = false
+                            enemy = false;
                         }
                     }
 
@@ -258,10 +281,11 @@ $(document).ready(function () {
                     boo.live = boo.live - yoshi.power;
                     if ((boo.live <= 0) && (counter === 2)) {
                         $("#defender").addClass("hidden");
-                        $("#text").html("<p>You WON! </p>")
+                        $("#text").html("<p>You WON! </p>");
                         $(".characters").append($("#boo"));
                         $(".characters").addClass("hidden");
                         $("#reset").removeClass("hidden");
+                        enemy = false;
 
                     }
                     else if (boo.live <= 0) {
@@ -269,6 +293,7 @@ $(document).ready(function () {
                         counter++
                         $(".characters").append($("#boo"));
                         $(".characters").addClass("hidden");
+                        enemy = false;
 
                     }
                     else {
@@ -281,6 +306,7 @@ $(document).ready(function () {
                             $("#text").html("<p>GAME OVER! You have been defeated! </p>")
                             $("#reset").removeClass("hidden");
                             alive = false
+                            enemy = false;
                         }
                     }
 
@@ -290,10 +316,11 @@ $(document).ready(function () {
                     if (bowser.live <= 0) {
                         if ((bowser.live <= 0) && (counter === 2)) {
                             $("#defender").addClass("hidden");
-                            $("#text").html("<p>You WON! </p>")
+                            $("#text").html("<p>You WON! </p>");
                             $(".characters").append($("#bowser"));
                             $(".characters").addClass("hidden");
                             $("#reset").removeClass("hidden");
+                            enemy = false;
 
                         }
                         else if (bowser.live <= 0) {
@@ -301,6 +328,7 @@ $(document).ready(function () {
                             $("#defender").addClass("hidden");
                             $(".characters").append($("#bowser"));
                             $(".characters").addClass("hidden");
+                            enemy = false;
                             counter++
 
                         }
@@ -316,6 +344,7 @@ $(document).ready(function () {
                             $("#text").html("<p>GAME OVER! You have been defeated! </p>")
                             $("#reset").removeClass("hidden");
                             alive = false;
+                            enemy = false;
                         }
                     }
                 }
@@ -332,10 +361,11 @@ $(document).ready(function () {
                     mario.live = mario.live - boo.power;
                         if ((mario.live <= 0) && (counter === 2)) {
                             $("#defender").addClass("hidden");
-                            $("#text").html("<p>You WON! </p>")
+                            $("#text").html("<p>You WON! </p>");
                             $(".characters").append($("#mario"));
                             $(".characters").addClass("hidden");
                             $("#reset").removeClass("hidden");
+                            enemy = false;
 
                         }
                         else if (mario.live <= 0) {
@@ -343,6 +373,7 @@ $(document).ready(function () {
                             $("#defender").addClass("hidden");
                             $(".characters").append($("#mario"));
                             $(".characters").addClass("hidden");
+                            enemy = false;
                             counter++
 
                         }
@@ -357,6 +388,7 @@ $(document).ready(function () {
                             $("#text").html("<p>GAME OVER! You have been defeated! </p>")
                             $("#reset").removeClass("hidden");
                             alive = false
+                            enemy = false;
                         }
                     }
                 }
@@ -364,10 +396,11 @@ $(document).ready(function () {
                     yoshi.live = yoshi.live - boo.power;
                     if ((yoshi.live <= 0) && (counter === 2)) {
                         $("#defender").addClass("hidden");
-                        $("#text").html("<p>You WON! </p>")
+                        $("#text").html("<p>You WON! </p>");
                         $(".characters").append($("#yoshi"));
                         $(".characters").addClass("hidden");
                         $("#reset").removeClass("hidden");
+                        enemy = false;
 
                     }
                     else if (yoshi.live <= 0) {
@@ -375,6 +408,7 @@ $(document).ready(function () {
                         $("#defender").addClass("hidden");
                         $(".characters").append($("#yoshi"));
                         $(".characters").addClass("hidden");
+                        enemy = false;
                         counter++
 
                     }
@@ -388,6 +422,7 @@ $(document).ready(function () {
                             $("#text").html("<p>GAME OVER! You have been defeated! </p>")
                             $("#reset").removeClass("hidden");
                             alive = false
+                            enemy = false;
                         }
                     }
                 }
@@ -396,10 +431,11 @@ $(document).ready(function () {
                     if (bowser.live <= 0) {
                         if ((bowser.live <= 0) && (counter === 2)) {
                             $("#defender").addClass("hidden");
-                            $("#text").html("<p>You WON! </p>")
+                            $("#text").html("<p>You WON! </p>");
                             $(".characters").append($("#bowser"));
                             $(".characters").addClass("hidden");
                             $("#reset").removeClass("hidden");
+                            enemy = false;
 
                         }
                         else if (bowser.live <= 0) {
@@ -407,6 +443,7 @@ $(document).ready(function () {
                             $("#defender").addClass("hidden");
                             $(".characters").append($("#bowser"));
                             $(".characters").addClass("hidden");
+                            enemy = false;
                             counter++
 
                         }
@@ -422,6 +459,7 @@ $(document).ready(function () {
                             $("#text").html("<p>GAME OVER! You have been defeated! </p>")
                             $("#reset").removeClass("hidden");
                             alive = false
+                            enemy = false;
                         }
                     }
                 }
@@ -436,10 +474,11 @@ $(document).ready(function () {
                     mario.live = mario.live - bowser.power;
                     if ((mario.live <= 0) && (counter === 2)) {
                         $("#defender").addClass("hidden");
-                        $("#text").html("<p>You WON! </p>")
+                        $("#text").html("<p>You WON! </p>");
                         $(".characters").append($("#mario"));
                         $(".characters").addClass("hidden");
                         $("#reset").removeClass("hidden");
+                        enemy = false;
 
                     }
                     else if (mario.live <= 0) {
@@ -448,6 +487,7 @@ $(document).ready(function () {
                         $(".characters").append($("#mario"));
                         $(".characters").addClass("hidden");
                         counter++
+                        enemy = false;
 
                     }
                     else {
@@ -460,6 +500,7 @@ $(document).ready(function () {
                             $("#text").html("<p>GAME OVER! You have been defeated! </p>")
                             $("#reset").removeClass("hidden");
                             alive = false
+                            enemy = false;
                         }
                     }
                 }
@@ -467,10 +508,11 @@ $(document).ready(function () {
                     yoshi.live = yoshi.live - bowser.power;
                     if ((yoshi.live <= 0) && (counter === 2)) {
                         $("#defender").addClass("hidden");
-                        $("#text").html("<p>You WON! </p>")
+                        $("#text").html("<p>You WON! </p>");
                         $(".characters").append($("#yoshi"));
                         $(".characters").addClass("hidden");
                         $("#reset").removeClass("hidden");
+                        enemy = false;
 
                     }
                     else if (yoshi.live <= 0) {
@@ -478,6 +520,7 @@ $(document).ready(function () {
                         $("#defender").addClass("hidden");
                         $(".characters").append($("#yoshi"));
                         $(".characters").addClass("hidden");
+                        enemy = false;
                         counter++
 
                     }
@@ -491,6 +534,7 @@ $(document).ready(function () {
                             $("#text").html("<p>GAME OVER! You have been defeated! </p>")
                             $("#reset").removeClass("hidden");
                             alive = false
+                            enemy = false;
                         }
                     }
                 }
@@ -498,10 +542,11 @@ $(document).ready(function () {
                     boo.live = boo.live - bowser.power;
                     if ((boo.live <= 0) && (counter === 2)) {
                         $("#defender").addClass("hidden");
-                        $("#text").html("<p>You WON! </p>")
+                        $("#text").html("<p>You WON! </p>");
                         $(".characters").append($("#boo"));
                         $(".characters").addClass("hidden");
                         $("#reset").removeClass("hidden");
+                        enemy = false;
 
                     }
                     else if (boo.live <= 0) {
@@ -510,6 +555,7 @@ $(document).ready(function () {
                         $(".characters").append($("#boo"));
                         $(".characters").addClass("hidden");
                         counter++
+                        enemy = false;
 
                     }
                     else {
@@ -522,11 +568,13 @@ $(document).ready(function () {
                             $("#text").html("<p>GAME OVER! You have been defeated! </p>")
                             $("#reset").removeClass("hidden");
                             alive = false
+                            enemy = false;
                         }
                     }
                 }
             }
         }
+    }
     })
 
 });
