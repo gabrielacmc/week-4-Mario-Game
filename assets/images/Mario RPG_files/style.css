@@ -1,0 +1,77 @@
+body {
+    background: url("../images/Super_Mario_RPG_Wallpaper.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
+
+#empty{
+    height: 10px;
+}
+
+h1{
+    text-align: center;
+    font-size: 40px;
+    color: black;
+}
+
+h3{
+    font-size: 25px;
+    color: black;
+}
+
+img{
+    height: 120px;
+    width: 120px;
+}
+
+.characters img,
+#chosenCharacter img,
+#enemys img,
+#defender img{
+    height: 120px;
+    width: 120px;
+    position: absolute;
+    left: 17%;
+    top: 17%;
+}
+
+.soround{
+    height: 180px;
+    width: 180px;
+    background-color: #e2e8e8;
+    float: left;
+    margin-left: 10px;
+    position: relative;
+    border-radius: 30px;
+}
+
+.soround #enemy{
+    background-color: #c31818;
+}
+
+#chosenCharacter .soround,
+#enemy .soround,
+#defender .soround{
+    float:none;
+}
+
+p{
+    text-align: center
+}
+
+.health{
+    position: absolute;
+    bottom: -2%;
+    left: 41%;
+}
+
+.hidden{ 
+    display: none; 
+}
+
+#text p{
+    text-align: left;
+    color: black;
+    font-size: 22px;
+    font-weight: bold;
+
+}
